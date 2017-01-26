@@ -41,7 +41,10 @@ class MessageController extends Controller
     public function newAction(Request $request)
     {
         $message = new Message($this->getUser());
-        $form = $this->createForm('AppBundle\Form\MessageType', $message);
+        $form = $this->createForm('AppBundle\Form\MessageType', $message, array(
+            'action' => $this->generateUrl('message_new'),
+            'method' => 'POST'
+        ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

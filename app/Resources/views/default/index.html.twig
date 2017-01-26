@@ -42,8 +42,11 @@
                 <div class="count">
                     <legend>Accueil - {{ pagination.getTotalItemCount }} message(s)</legend>
                 </div>
-
-                <a href="{{ path('message_new') }}" class="btn btn-sm btn-success">{{ 'message.list.create_new_message'|trans }}</a>
+                <div id="sidebar">
+                    {{ render(controller(
+                        'AppBundle:Message:new'
+                    )) }}
+                </div>
                 {% for message in pagination %}
                     <div class="panel panel-default">
                         <div class="panel-heading"> <a href="{{ path('user_message', {'username': message.user.username }) }}">{{ message.user.username }}</a>
