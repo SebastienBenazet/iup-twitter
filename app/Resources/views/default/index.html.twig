@@ -80,9 +80,9 @@
                                      Je n'aime plus
                                     </a>
                                     {% else %}
-                                        <a href="{{ path('like' , {'id' : message.id }) }}">
-                                            J'aime
-                                        </a>
+                                    <a href="{{ path('like' , {'id' : message.id }) }}">
+                                        J'aime
+                                    </a>
                              {% endif %}
 
                             {% if (message.parent is not null and message.parent.user != app.user)
@@ -90,6 +90,8 @@
                             <i class="fa fa-twitter" aria-hidden="true"></i>
                             <a href="{{ path('retweet' , {'id' : message.id }) }}"> Retweet</a>
                             {% endif %}
+
+                            <a href="mailto:?subject={{ message.user.username }} vous a partagé un tweet&body={{ message.content }}"><span class="glyphicon glyphicon-envelope"></span> Partager par mail</a>
 
                         </div>
                     </div>
