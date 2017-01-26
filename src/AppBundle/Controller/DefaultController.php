@@ -20,8 +20,15 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Message')
             ->findByOrderedByDate();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $messages,
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('default/index.html.twig', [
-            'messages' => $messages,
+            'pagination' => $pagination,
         ]);
     }
 
