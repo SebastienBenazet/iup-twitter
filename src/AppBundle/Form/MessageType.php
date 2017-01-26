@@ -19,14 +19,19 @@ class MessageType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, array(
+                'label' => 'Contenu du message',
                 'attr' => array(
                     'rows' => '5',
                     'cols' => '35',
+                    'class' => 'center-block',
                 )
             ))
             ->add('picture', FileType::class, array(
-                'label' => 'Picture (PNG, JPG, GIF, MP4)',
+                'label' => 'Pièce jointe (PNG, JPG, GIF, MP4)',
                 'data_class' => null,
+                'attr' => array(
+                    'class' => 'center-block',
+                )
                 ))
         ;
     }

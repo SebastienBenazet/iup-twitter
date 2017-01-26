@@ -8,7 +8,7 @@
                 <div class="count">
                     <legend>Accueil - {{ pagination.getTotalItemCount }} message(s)</legend>
                 </div>
-                <div id="sidebar">
+                <div id="sidebar" class="text-center">
                     {{ render(controller(
                         'AppBundle:Message:new'
                     )) }}
