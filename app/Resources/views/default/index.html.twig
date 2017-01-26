@@ -39,6 +39,7 @@
         <div id="container">
             <fieldset>
                 <legend>Accueil - {{ messages|length }} message(s)</legend>
+                <a href="{{ path('message_new') }}" class="btn btn-sm btn-success">{{ 'message.list.create_new_message'|trans }}</a>
                 {% for message in messages %}
                     <div class="panel panel-default">
                         <div class="panel-heading"> <a href="{{ path('user_message', {'username': message.user.username }) }}">{{ message.user.username }}</a>

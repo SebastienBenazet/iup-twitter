@@ -62,7 +62,8 @@ class MessageController extends Controller
             $em->persist($message);
             $em->flush();
 
-            return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+            //return $this->redirectToRoute('message_show', array('id' => $message->getId()));
+            return $this->redirect($this->generateUrl('homepage'));
         }
 
         return $this->render('message/new.html.twig', array(
