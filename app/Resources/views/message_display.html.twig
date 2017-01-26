@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+    <div class="panel-heading"> <a href="{{ path('user_message', {'username': message.user.username }) }}">{{ message.user.username }}</a>
+        {% if message.parent is not null %}
+            a retweeté
+        {% endif %}
+    </div>
+    <div class="panel-body">
+        {{ message.content }}
+
+        {% if message.picture is not empty %}
+            {% if message.picture|ext == 'mp4' %}
+                <video width="320" height="180" controls="controls">
+                    <source src="{{ asset('uploads/pictures/' ~ message.picture) }}" type="video/mp4" />
+                </video>
+            {% elseif message.picture|ext == 'pdf' %}
+                <a href="{{ asset('uploads/pictures/' ~ message.picture) }}" target="_blank"><img src="{{ asset('img/pdf-flat.png') }}" style="height:50px"/></a>
+            {% else %}
+                <img src="{{ asset('uploads/pictures/' ~ message.picture) }}" style="max-width: 256px;" />
+            {% endif %}
+        {% endif %}
+
+        {% set statusId = 0 %}
+        {% for status in message.status %}
+            {% if status.user == app.user %}
+                {% set statusId = status.id %}
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    <div class="panel-footer">
+        <i class="fa fa-thumbs-o-up" ></i>
+
+        {% if statusId > 0 %}
+            <a href="{{ path('unlike' , {'id' : statusId }) }}">
+                Je n'aime plus
+            </a>
+        {% else %}
+            <a href="{{ path('like' , {'id' : message.id }) }}">
+                J'aime
+            </a>
+        {% endif %}
+
+        {% if (message.parent is not null and message.parent.user != app.user)
+        or (message.parent is null) %}
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <a href="{{ path('retweet' , {'id' : message.id }) }}"> Retweet</a>
+        {% endif %}
+
+        <a href="mailto:?subject={{ message.user.username }} vous a partagé un tweet&body={{ message.content }}"><span class="glyphicon glyphicon-envelope"></span> Partager par mail</a>
+        <div class="pull-right">
+            <a href="{{ path('beautiful_show', { 'id': message.id }) }}">{{ message.createdat|date('d-m-Y H:i:s') }}</a>
+        </div>
+    </div>
+</div>
