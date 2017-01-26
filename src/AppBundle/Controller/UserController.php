@@ -18,8 +18,15 @@ class UserController extends Controller
             ->getRepository('AppBundle:Message')
             ->findByOrderedByDateAndByUser($user);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $messages,
+            1,
+            5
+        );
+
         return $this->render('default/index.html.twig', [
-            'messages' => $messages,
+            'pagination' => $pagination,
         ]);
     }
 }

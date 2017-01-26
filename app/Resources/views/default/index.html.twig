@@ -60,7 +60,7 @@
                                         <source src="{{ asset('uploads/pictures/' ~ message.picture) }}" type="video/mp4" />
                                     </video>
                                 {% elseif message.picture|ext == 'pdf' %}
-                                    <a href="{{ asset('uploads/pictures/' ~ message.picture) }}"><img src="{{ asset('img/pdf-flat.png') }}" style="height:50px"/></a>
+                                    <a href="{{ asset('uploads/pictures/' ~ message.picture) }}" target="_blank"><img src="{{ asset('img/pdf-flat.png') }}" style="height:50px"/></a>
                                 {% else %}
                                     <img src="{{ asset('uploads/pictures/' ~ message.picture) }}" style="max-width: 256px;" />
                                 {% endif %}
