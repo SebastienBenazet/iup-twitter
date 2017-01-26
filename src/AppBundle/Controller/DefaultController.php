@@ -132,4 +132,16 @@ class DefaultController extends Controller
 
         return $this->redirect($this->generateUrl('homepage'));
     }
+
+    /**
+     * Finds and displays a beautiful Message.
+     *
+     * @Route("/{id}", name="beautiful_show")
+     */
+    public function beautifulShowAction(Message $message)
+    {
+        return $this->render('default/beautiful_show.html.twig', array(
+            'message' => $message,
+        ));
+    }
 }
